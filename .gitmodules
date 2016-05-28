@@ -1,0 +1,3 @@
+[submodule "lib/stream"]
+	path = lib/stream
+	url = git@github.com:mlazowik/stream.git

@@ -1,16 +1,25 @@
 #ifndef CHAT_DESCRIPTOR_H
 #define CHAT_DESCRIPTOR_H
 
-class Descriptor {
-public:
-    virtual ~Descriptor() {};
-    virtual int getDescriptor() const = 0;
-    virtual void destroy() = 0;
+#include <stream/stream.h>
 
-    virtual bool operator==(const Descriptor &rhs) const = 0;
-    virtual bool operator!=(const Descriptor &rhs) const = 0;
-    virtual bool operator<(const Descriptor &rhs) const = 0;
-    virtual bool operator>(const Descriptor &rhs) const = 0;
+class Descriptor : public Stream {
+public:
+    Descriptor(int descriptor);
+    void destroy();
+
+    int getDescriptor() const;
+
+    size_t getChunk(void *buffer, size_t bufferSize) const;
+    void sendChunk(const void *buffer, size_t bufferSize) const;
+
+    bool operator==(const Descriptor &rhs) const;
+    bool operator!=(const Descriptor &rhs) const;
+    bool operator<(const Descriptor &rhs) const;
+    bool operator>(const Descriptor &rhs) const;
+
+private:
+    int descriptor;
 };
 
 #endif //CHAT_DESCRIPTOR_H
