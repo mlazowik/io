@@ -18,7 +18,7 @@ public:
     bool operator<(const Descriptor &rhs) const;
     bool operator>(const Descriptor &rhs) const;
 
-private:
+protected:
     int descriptor;
 };
 
